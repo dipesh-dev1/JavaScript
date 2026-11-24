@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Demo</title>
+    <style>
+        .error {
+            font-size: medium;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <fieldset>
+        <form onsubmit="return validateform()">
+
+            <label>Enter your name :</label>
+            <input type="text" id="name" placeholder="Enter your name">
+            <div class="error" id="nameerror"></div>
+            <br><br>
+
+            <label>Enter your email :</label>
+            <input type="email" id="email" placeholder="Enter your email">
+            <div class="error" id="emailerror"></div>
+            <br><br>
+
+            <label>Enter your Password :</label>
+            <input type="password" id="password" placeholder="Enter your password">
+            <div class="error" id="passworderror"></div>
+            <br><br>
+
+            <label>Confirm Password :</label>
+            <input type="password" id="confirm" placeholder="Confirm your password">
+            <div class="error" id="confirmerror"></div>
+            <br><br>
+
+            <input type="submit" value="Submit">
+
+        </form>
+    </fieldset>
+
+    <script>
+        function validateform() {
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let confirm = document.getElementById("confirm").value;
+
+            let isvalidate = true;
+
+            // clear errors
+            document.getElementById("nameerror").innerHTML = "";
+            document.getElementById("emailerror").innerHTML = "";
+            document.getElementById("passworderror").innerHTML = "";
+            document.getElementById("confirmerror").innerHTML = "";
+
+            if (name === "") {
+                document.getElementById("nameerror").innerHTML = "Please enter your name";
+                isvalidate = false;
+            }
+
+            if (email === "") {
+                document.getElementById("emailerror").innerHTML = "Please enter your email";
+                isvalidate = false;
+            }
+
+            if (password === "") {
+                document.getElementById("passworderror").innerHTML = "Please enter password";
+                isvalidate = false;
+            }
+
+            if (confirm === "") {
+                document.getElementById("confirmerror").innerHTML = "Please confirm password";
+                isvalidate = false;
+            }
+
+            if (password !== "" && confirm !== "" && password !== confirm) {
+                document.getElementById("confirmerror").innerHTML = "Passwords do not match";
+                isvalidate = false;
+            }
+
+            return isvalidate;
+        }
+    </script>
+</body>
+</html>
